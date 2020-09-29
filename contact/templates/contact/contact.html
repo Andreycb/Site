@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block title %} Contact {% endblock %}
+{% block content %}
+<h2 style="text-align: center">Contact Me</h2>
+<div class="container contact" style="justify-content: center; display: flex; overflow: hidden;" >
+  <div class="row">
+      <form method="POST" action="{% url 'contact'%}"> {% csrf_token%}
+        {{form|bootstrap}}
+        <br>
+        <div class="col-sm-offset-2 col-sm-5" style="overflow: hidden;">
+          <button type="submit" class="btn btn-primary float-right">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

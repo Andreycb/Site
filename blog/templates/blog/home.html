@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %} Articles {% endblock %}
+{% block content %}
+
+{% for post in object_list %}
+<div class="container">
+    <div class="row">
+        <div style="width: 100%; padding: 10px; margin: 10px; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0);">
+            <div class="post-preview">
+                <a href="{{ post.get_absolut_url}}">
+                    <h3 class="post-title">
+                        {{ post.title }}
+                    </h3>
+                    <h4 class="post-subtitle">
+                        {{ post.subtitle|safe }}
+                    </h4>
+                </a>
+                <p class="post-meta">Posted by
+                    {{ post.author }}
+                    on {{post.publicado}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% if is_paginated %}
+<div style="display: flex; width: 100%; justify-content: space-around; padding: 50px; overflow: hidden;">
+    {% if page_obj.has_previous %}
+        <a class="btn btn-primary float-right" href="?page={{ page_obj.previous_page_number }}"> Previus</a>
+    {% endif %}
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+    {% if page_obj.has_next %}
+        <a class="btn btn-primary float-right" href="?page={{ page_obj.next_page_number }}">Older Posts</a>
+    {% endif %}
+</div>
+{% else %}
+<h3>Your File Exam</h3>
+<p>File not yet available</p>
+{% endif %}
+{% endblock %}

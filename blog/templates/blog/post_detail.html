@@ -1,0 +1,40 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
+    <link
+        href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+        rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/clean-blog.min.css'%}" rel="stylesheet">
+
+</head>
+<body>
+{% block content %}
+<div class="topnav">
+    <a class="active" href="/blog/">Back</a>
+</div>
+<article style="display: flex; justify-content: center;">
+    <div class="container" style="word-wrap: break-word; width: 60%;">
+        <div class="row">
+            <div class="col-lg-8 col-md-20 mx-auto" style="text-align: center;">
+                <h1 style="text-align:center; font-size: 250%;"> {{object.title}}</h1>
+                <h3 style="text-align: center; font-size: 150%; font-weight: 600;"> {{object.subtitle}}</h3>
+                {% if object.imagem %}
+                <img  src="{{ object.imagem.url }}">
+                {% endif %}
+                <p>{{object.content|safe}}</p>
+                <p>Published by {{object.author}} in {{object.publicado|date}}</p>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}
+   
+</body>
+</html>
